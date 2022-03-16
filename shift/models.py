@@ -31,7 +31,7 @@ class Shift(BaseModel):
     def __str__(self):
         return 'shift_session: {}'.format(self.shift_session)
 
-# One to Many relationship with Worker and Shift
+# One to many relationship between worker and shift
 class WorkerShift(BaseModel):
     worker = models.ForeignKey(
         User, on_delete=models.CASCADE, blank=True, null=True
