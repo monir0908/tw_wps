@@ -7,16 +7,16 @@ from core.models import User
 # Master table regarding SHIFT
 class Shift(BaseModel):
     shift_title= models.CharField(max_length=250)
-    shift_start = models.TimeField( blank=True, null=True)
-    shift_end = models.TimeField( blank=True, null=True)
-    shift_session= models.CharField(max_length=250)
+    shift_start = models.TimeField( blank=True, null=False)
+    shift_end = models.TimeField( blank=True, null=False)
+    shift_session= models.CharField(max_length=250, blank=False)
     shift_short_code= models.CharField(max_length=100)
     status = models.IntegerField(
         choices=[(tag.value, _(tag.name)) for tag in ShiftStatus],
         default=ShiftStatus.ACTIVE.value
     )
     added_by = models.ForeignKey(
-        User, on_delete=models.CASCADE, blank=True, null=True, db_column="added_by"
+        User, on_delete=models.CASCADE, blank=False, null=False, db_column="added_by"
     )
     
     class Meta:
