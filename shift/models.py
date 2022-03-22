@@ -16,7 +16,7 @@ class Shift(BaseModel):
         default=ShiftStatus.ACTIVE.value
     )
     added_by = models.ForeignKey(
-        User, on_delete=models.CASCADE, blank=False, null=False, db_column="added_by"
+        User, on_delete=models.CASCADE, blank=True, null=True, db_column="added_by"
     )
     
     class Meta:
@@ -34,12 +34,14 @@ class Shift(BaseModel):
 # One to many relationship between worker and shift
 class WorkerShift(BaseModel):
     worker = models.ForeignKey(
-        User, on_delete=models.CASCADE, blank=True, null=True
+        User, on_delete=models.CASCADE, blank=True, null=True, related_name="worker"
     )
     shift = models.ForeignKey(
         Shift, on_delete=models.CASCADE, blank=True, null=True
     )
-    
+    added_by = models.ForeignKey(
+        User, on_delete=models.CASCADE, blank=True, null=True, db_column="added_by"
+    )
     class Meta:
         db_table = 'worker_shifts'
         ordering = ['-created_at']

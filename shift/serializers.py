@@ -10,6 +10,11 @@ class ShiftSerializer(serializers.ModelSerializer):
         fields = '__all__'
         extra_fields = ['added_by']
 
+class ShiftCreateSerializer(serializers.ModelSerializer):  
+    class Meta:
+        model = Shift
+        fields = '__all__'
+
 class WorkerShiftSerializer(serializers.ModelSerializer):
     worker_detail = serializers.SerializerMethodField()
     shift_detail = serializers.SerializerMethodField()
