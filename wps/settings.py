@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'common',
     'core',
     'shift',
-    'rest_framework_simplejwt'
+    'rest_framework_simplejwt',
+    'order'
 ]
 
 AUTH_USER_MODEL = 'core.User'
